@@ -3,13 +3,14 @@
 import axios from 'axios';
 import {store} from './store.js';
 
-import Search from './components/Search.vue';
-import MoviesList from './components/MoviesList.vue';
+import AppHeader from './components/AppHeader.vue';
+import AppMain from './components/AppMain.vue';
 
 export default {
   data() {
     return {
       movies: [],
+      series: [],
 
       store,
     }
@@ -22,8 +23,8 @@ export default {
   // },
 
   components: {
-    Search,
-    MoviesList,
+    AppHeader,
+    AppMain,
   },
 
   methods: {
@@ -31,6 +32,13 @@ export default {
       axios.get('https://api.themoviedb.org/3/search/movie?api_key=e9b9b757bb90674f79be808842a884de&query=' + this.store.searchText).then(res => {
         console.log(res.data.results)
         this.store.movies = res.data.results;
+      })
+    },
+
+    searchSeries() {
+      axios.get('https://api.themoviedb.org/3/search/tv?api_key=e9b9b757bb90674f79be808842a884de&query=' + this.store.searchText).then(res => {
+        console.log(res.data.results)
+        this.store.series = res.data.results;
       })
     }
   }
@@ -40,13 +48,13 @@ export default {
 
 <template>
   
-  <Search @search="searchMovies()"></Search>
+  <AppHeader @search="searchMovies(), searchSeries()"></AppHeader>
 
-  <MoviesList></MoviesList>
+  <AppMain></AppMain>
 
 
 </template>
 
 <style>
 
-</style>
+</style>./components/AppMain.vue/index.js./components/AppHeader.vue/index.js
