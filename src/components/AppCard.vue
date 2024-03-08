@@ -31,10 +31,33 @@ export default {
                 starArray.push(emptyStars);
             }
             return starArray;
-        }
+        },
+
+        // bandiere
+        changeFlags (currentLanguage) {
+
+            if (currentLanguage === 'en') {
+                currentLanguage = 'us'
+            } 
+            else if (currentLanguage === 'ja') {
+                currentLanguage = 'jp'
+            }
+            else if (currentLanguage === 'ko') {
+                currentLanguage = 'kr'
+            }
+            // per aggiungere altre bandiere
+            // else if (currentLanguage === '') {
+            //     currentLanguage = ''
+            // }
+
+            return `https://flagcdn.com/w40/${currentLanguage}.jpg`
+        },
+
     },
 
 }
+
+
 </script>
 
 <template>
@@ -46,9 +69,9 @@ export default {
         <div class="card">
             <h3><strong>Titolo:</strong> {{ item.title ? item.title : item.name }}</h3>
             <h5><strong>Titolo originale:</strong> {{ item.original_title ? item.original_title : item.original_name }}</h5>
-            <p>{{ item.original_language }}</p>
+            <img :src="changeFlags(item.original_language)" alt="">
             <p><strong>Voto: </strong>
-                <span v-for="emptyStars in voteStars(item.vote_average)" :key="emptyStars">
+                <span v-for="emptyStars in voteStars(item.vote_average)">
                    <i :class="emptyStars"></i>
                 </span></p>
             <p><strong>Overview:</strong> {{ item.overview }}</p>
@@ -78,21 +101,31 @@ export default {
 
     .card {
         position: absolute;
+
+        display: flex;
+        flex-flow: column;
+
         width: 100%;
         height: 336px;
 
+        gap: 10px;
         padding: 20px 13px;
         overflow-y: auto;
+
         background-color: black;
         opacity: 0;
 
+        img {
+            width: 30px;
+            height: auto;
+        }
 
         .fas.fa-star {
             color: rgba(255, 255, 255, 0.281);
         }
 
         .fas.fa-star.filled {
-            color: gold;
+            color: rgb(226, 241, 7);
         }
     }
 

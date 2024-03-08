@@ -1,6 +1,5 @@
 <script>
 import axios from 'axios';
-import { faFontAwesome } from '@fortawesome/free-solid-svg-icons';
 import {store} from './store.js';
 
 import AppHeader from './components/AppHeader.vue';
