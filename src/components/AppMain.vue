@@ -24,7 +24,7 @@ export default {
 
     <div class="container">
 
-        <div class="movies">
+        <div class="movies" v-if="store.movies.length">
             <h1>Movies</h1>
             <ul>
                 <AppCard
@@ -35,7 +35,7 @@ export default {
             </ul>
         </div>
 
-        <div class="series">
+        <div class="series" v-if="store.movies.length">
             <h1>Series TV</h1>
             <ul>
                 <AppCard
@@ -46,7 +46,7 @@ export default {
             </ul>
         </div>
 
-
+        <h1 v-if="!store.searchText"><i>Cerca qualcosa...</i></h1>
     </div>
 
 </template>

@@ -64,12 +64,16 @@ export default {
 
     <li class="cards">
     
-        <img :src="showImage(item.poster_path)" :alt="item.title">
+        <img v-if="item.poster_path" :src="showImage(item.poster_path)" :alt="item.title">
+        <img v-else src="https://www.altavod.com/assets/images/poster-placeholder.png" alt="">
         
         <div class="card">
             <h3><strong>Titolo:</strong> {{ item.title ? item.title : item.name }}</h3>
+
             <h5><strong>Titolo originale:</strong> {{ item.original_title ? item.original_title : item.original_name }}</h5>
+
             <img :src="changeFlags(item.original_language)" alt="">
+
             <p><strong>Voto: </strong>
                 <span v-for="emptyStars in voteStars(item.vote_average)">
                    <i :class="emptyStars"></i>
