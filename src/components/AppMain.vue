@@ -25,7 +25,7 @@ export default {
     <div class="container">
 
         <div class="movies">
-            <h2>Movies</h2>
+            <h1>Movies</h1>
             <ul>
                 <AppCard
                     v-for="currentMovie in store.movies"
@@ -36,7 +36,7 @@ export default {
         </div>
 
         <div class="series">
-            <h2>Series TV</h2>
+            <h1>Series TV</h1>
             <ul>
                 <AppCard
                     v-for="currentSerie in store.series"
@@ -53,14 +53,18 @@ export default {
 
 <style>
 
+h1 {
+    padding-top: 35px;
+}
+
 ul {
     list-style-type: none;
 
     display: flex;
     flex-flow: row wrap;
 
-    margin: 50px 0px;
+    margin: 20px 0px;
     gap: 5px;
 }
 
-</style>./AppCard.vue/index.js
+</style>

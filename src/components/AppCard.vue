@@ -3,15 +3,14 @@ export default {
     name: 'AppCard',
 
     props: {
-        // movie: Object,
-        // serie: Object,
         item: Object,
     },
 
     methods: {
         showImage(currentImage) {
             return `https://image.tmdb.org/t/p/w342${currentImage}`
-        }
+        },
+
     },
 
 }
@@ -20,19 +19,15 @@ export default {
 <template>
 
     <li class="cards">
-        <div>
-            <img :src="showImage(item.poster_path)" :alt="item.title">
-        </div>
-
+    
+        <img :src="showImage(item.poster_path)" :alt="item.title">
+        
         <div class="card">
-            <h3>
-                {{ item.title ? item.title : item.name }}
-            </h3>
-            <h5>
-                {{ item.original_title ? item.original_title : item.original_name }}
-            </h5>
-            {{ item.original_language }} <br>
-            {{ item.vote_average }}
+            <h3><strong>Titolo:</strong> {{ item.title ? item.title : item.name }}</h3>
+            <h5><strong>Titolo originale:</strong> {{ item.original_title ? item.original_title : item.original_name }}</h5>
+            <p>{{ item.original_language }}</p>
+            <p><strong>Voto:</strong> {{ item.vote_average }}</p>
+            <p><strong>Overview:</strong> {{ item.overview }}</p>
         </div>
     </li>
 
@@ -44,24 +39,35 @@ export default {
 .cards {
     display: flex;
     flex-flow: column;
+
+    position: relative;
+
     gap: .7em;
 
     width: calc(100% / 5 - 5px / 5 * 4);
 
-    text-align: center;
+    // text-align: center;
 
     img {
         width: 100%;
         height: 336px;
     }
 
-    // .card {
-    //     display: flex;
-    // }
+    .card {
+        position: absolute;
+        width: 100%;
+        height: 336px;
 
-    // .card:hover {
-    //     display: none;
-    // }
+        padding: 20px 13px;
+        overflow-y: auto;
+        background-color: black;
+        // display: none;
+        opacity: 0;
+    }
+
+    .card:hover {
+        opacity: 0.85;    
+    }
 }
 
 </style>
